@@ -7,15 +7,20 @@ const cli = require("cac")();
 const sao = require("sao");
 const pkg = require("./package.json");
 
-const generatorPrefix = 'PublicI';
-const generatorSuffix = 'template';
+const generatorPrefix = "PublicI";
+const generatorSuffix = "template";
 
 cli
-  .command('<template> [outDir]', 'Generate a template')
+  .command("<template> [outDir]", "Generate a template")
   .action((generator, outDir, flags) => {
     const options = Object.assign(
       {
-      generator: `${generatorPrefix}/${generator}-${generatorSuffix}`,
+        generator:
+          generator.includes(".") ||
+          generator.includes("@") ||
+          generator.includes("/")
+            ? generator
+            : `${generatorPrefix}/${generator}-${generatorSuffix}`,
         outDir: outDir || ".",
         updateCheck: true,
       },
