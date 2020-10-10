@@ -7,14 +7,15 @@ const cli = require("cac")();
 const sao = require("sao");
 const pkg = require("./package.json");
 
-const githubOrg = 'PublicI';
+const generatorPrefix = 'PublicI';
+const generatorSuffix = 'template';
 
 cli
   .command('<template> [outDir]', 'Generate a template')
   .action((generator, outDir, flags) => {
     const options = Object.assign(
       {
-        generator: `${githubOrg}/${generator}`,
+      generator: `${generatorPrefix}/${generator}-${generatorSuffix}`,
         outDir: outDir || ".",
         updateCheck: true,
       },
