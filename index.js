@@ -10,7 +10,7 @@ const pkg = require("./package.json");
 const githubOrg = 'PublicI';
 
 cli
-  .command("[outDir]", "Generate a new project")
+  .command('<template> [outDir]', 'Generate a template')
   .action((generator, outDir, flags) => {
     const options = Object.assign(
       {
